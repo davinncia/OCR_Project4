@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/imageView_item_meeting"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:src="@android:drawable/alert_dark_frame"/>
+    
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_item_main"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            tools:text="Réunion A - 14h00 - Peach"/>
+
+        <TextView
+            android:id="@+id/textView_item_mails"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            tools:text="phil@gmail.com"/>
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton_item_delete"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>
