@@ -16,7 +16,9 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="5"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TextView
             android:id="@+id/textView_item_main"
@@ -37,6 +39,8 @@
         android:id="@+id/imageButton_item_delete"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/ic_bin"/>
 
 </LinearLayout>

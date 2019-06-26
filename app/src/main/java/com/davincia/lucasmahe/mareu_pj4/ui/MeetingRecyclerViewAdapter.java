@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.davincia.lucasmahe.mareu_pj4.R;
+import com.davincia.lucasmahe.mareu_pj4.events.DeleteMeetingEvent;
 import com.davincia.lucasmahe.mareu_pj4.model.Meeting;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -36,11 +39,19 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(@NonNull MeetingsViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull MeetingsViewHolder holder, final int i) {
 
         holder.imageView.setImageResource(R.drawable.ic_launcher_background);
         holder.titleTextView.setText(mMeetings.get(i).getName());
         holder.mailsTextView.setText(mMeetings.get(i).getMails());
+
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Using our EventBus library to communicate. Publish
+                EventBus.getDefault().post(new DeleteMeetingEvent(mMeetings.get(i)));
+            }
+        });
     }
 
     @Override

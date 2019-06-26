@@ -8,4 +8,6 @@ public interface MeetingApiService {
 
     List<Meeting> getMeetings();
 
+    void deleteMeeting(Meeting meeting);
+
 }
