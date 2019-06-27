@@ -1,9 +1,12 @@
 package com.davincia.lucasmahe.mareu_pj4.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.View;
 import android.widget.Toast;
 
 import com.davincia.lucasmahe.mareu_pj4.R;
@@ -31,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = findViewById(R.id.recyclerView_meeting);
+        FloatingActionButton mFab = findViewById(R.id.fab_add_meeting);
+
+        mFab.setOnClickListener(fabListener);
 
         //TODO: Why is injection necessary ?
         mApiService = Injection.getMeetingApiService();
@@ -70,4 +76,17 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    View.OnClickListener fabListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mApiService.addMeeting();
+            mAdapter.notifyDataSetChanged();
+        }
+    };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 }
