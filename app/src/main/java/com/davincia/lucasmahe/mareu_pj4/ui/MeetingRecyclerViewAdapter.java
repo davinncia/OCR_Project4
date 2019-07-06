@@ -1,8 +1,8 @@
 package com.davincia.lucasmahe.mareu_pj4.ui;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.davincia.lucasmahe.mareu_pj4.R;
 import com.davincia.lucasmahe.mareu_pj4.events.DeleteMeetingEvent;
 import com.davincia.lucasmahe.mareu_pj4.model.Meeting;
+import com.davincia.lucasmahe.mareu_pj4.utils.SortMeetings;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -21,10 +22,6 @@ import java.util.List;
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.MeetingsViewHolder> {
 
     private List<Meeting> mMeetings;
-
-    public MeetingRecyclerViewAdapter(List<Meeting> meetings){
-        this.mMeetings = meetings;
-    }
 
     @NonNull
     @Override
@@ -56,7 +53,20 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
     @Override
     public int getItemCount() {
-        return mMeetings.size();
+        return mMeetings != null? mMeetings.size() : 0;
+    }
+
+    public void setData(List<Meeting> meetings, int order){
+        SortMeetings sorter = new SortMeetings();
+        switch (order){
+            case MainActivity.NAME_ORDER:
+                this.mMeetings = sorter.nameOrder(meetings);
+            case MainActivity.DATE_ORDER:
+                this.mMeetings = sorter.dateOrder(meetings);
+            default:
+                this.mMeetings = meetings;
+        }
+        notifyDataSetChanged();
     }
 
     public static class MeetingsViewHolder extends RecyclerView.ViewHolder{
