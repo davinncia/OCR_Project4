@@ -13,13 +13,13 @@ public abstract class DummyMeetingGenerator {
     }
 
     public static List<Meeting> DUMMY_MEETINGS = Arrays.asList(
-            new Meeting("Avancement projet4", "15H20", "Salle B", "phil@gmail.com - marc@hotmail.fr"),
-            new Meeting("Budget café", "7H20", "Salle A", "phil@gmail.com - marc@hotmail.fr"),
-            new Meeting("Encore une", "18H00", "Salle B", "phil@gmail.com - marc@hotmail.fr"),
-            new Meeting("A quand les vacances?", "22H30", "Salle Z", "phil@gmail.com - marc@hotmail.fr"),
-            new Meeting("Un peu de sérieux", "7H00", "Salle V", "phil@gmail.com - marc@hotmail.fr"),
-            new Meeting("UI new app", "13H00", "Salle C", "phil@gmail.com - marc@hotmail.fr"),
-            new Meeting("La Réunion", "15H20", "Salle C", "phil@gmail.com - marc@hotmail.fr"),
-            new Meeting("Mayotte", "16H40", "Salle A", "phil@gmail.com - marc@hotmail.fr")
+            new Meeting("Avancement projet4", "7", "Salle B", "phil@gmail.com - marc@hotmail.fr"),
+            new Meeting("Budget café", "6", "Salle A", "phil@gmail.com - marc@hotmail.fr"),
+            new Meeting("Encore une", "5", "Salle B", "phil@gmail.com - marc@hotmail.fr"),
+            new Meeting("A quand les vacances?", "8", "Salle Z", "phil@gmail.com - marc@hotmail.fr"),
+            new Meeting("Un peu de sérieux", "1", "Salle V", "phil@gmail.com - marc@hotmail.fr"),
+            new Meeting("UI new app", "2", "Salle C", "phil@gmail.com - marc@hotmail.fr"),
+            new Meeting("La Réunion", "4", "Salle C", "phil@gmail.com - marc@hotmail.fr"),
+            new Meeting("Mayotte", "3", "Salle A", "phil@gmail.com - marc@hotmail.fr")
     );
 }

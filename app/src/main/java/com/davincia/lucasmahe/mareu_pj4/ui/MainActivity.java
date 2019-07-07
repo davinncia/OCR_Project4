@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -29,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int DATE_ORDER = 1;
     public static final int NAME_ORDER = 2;
 
-    //this should be stored in preferences
     private List<Meeting> mMeetings;
+    //this should be stored in preferences
     private int sortingOrder = 0;
 
     private MeetingViewModel mMeetingViewModel;
@@ -68,6 +67,17 @@ public class MainActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
+
+    private void initRecyclerView(){
+        //Setting LayoutManager
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //Setting Adapter
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    ///////////////////////////
+    //EVENT BUS REGISTRATION///
+    ///////////////////////////
     @Override
     protected void onStart() {
         super.onStart();
@@ -81,12 +91,6 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
-    private void initRecyclerView(){
-        //Setting LayoutManager
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //Setting Adapter
-        mRecyclerView.setAdapter(mAdapter);
-    }
 
     ///////////////////////////
     ///////////MENU////////////
@@ -102,10 +106,14 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menu_sort_by_name:
-                mAdapter.setData(mMeetingViewModel.getMeetings().getValue(), NAME_ORDER);
+                sortingOrder = NAME_ORDER;
+                //this will trigger our observer by changing method output
+                mMeetingViewModel.getMeetings();
                 return true;
             case R.id.menu_sort_by_date:
-                mAdapter.setData(mMeetingViewModel.getMeetings().getValue(), DATE_ORDER);
+                sortingOrder = DATE_ORDER;
+                //this will trigger our observer by changing method output
+                mMeetingViewModel.getMeetings();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

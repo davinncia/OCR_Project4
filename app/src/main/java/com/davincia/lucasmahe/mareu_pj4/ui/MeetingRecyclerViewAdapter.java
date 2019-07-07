@@ -3,6 +3,8 @@ package com.davincia.lucasmahe.mareu_pj4.ui;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,11 +60,14 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
     public void setData(List<Meeting> meetings, int order){
         SortMeetings sorter = new SortMeetings();
+
         switch (order){
             case MainActivity.NAME_ORDER:
                 this.mMeetings = sorter.nameOrder(meetings);
+                break;
             case MainActivity.DATE_ORDER:
                 this.mMeetings = sorter.dateOrder(meetings);
+                break;
             default:
                 this.mMeetings = meetings;
         }
