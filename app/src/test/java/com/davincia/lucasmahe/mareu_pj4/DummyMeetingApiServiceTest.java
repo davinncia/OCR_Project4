@@ -59,4 +59,13 @@ public class DummyMeetingApiServiceTest {
         assertTrue(mApiService.getMeetings().size() == meetingsSize + 1);
     }
 
+    @Test
+    public void sortMeetingsByName(){
+
+    }
+
+    @Test
+    public void sortMeetingsByDate(){
+
+    }
 }

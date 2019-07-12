@@ -38,7 +38,7 @@ public class SortMeetings {
         Collections.sort(mMeetings, new Comparator<Meeting>() {
             @Override
             public int compare(Meeting a, Meeting b) {
-                return a.getHour().compareTo(b.getHour());
+                return a.getTime().compareTo(b.getTime());
             }
         });
         return mMeetings;

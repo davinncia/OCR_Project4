@@ -12,7 +12,7 @@
         android:layout_weight="1"
         android:src="@android:drawable/alert_dark_frame"/>
     
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="5"
@@ -26,14 +26,26 @@
             android:layout_height="20dp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
-            tools:text="Réunion A - 14h00 - Peach"/>
+            tools:text="Réunion A - Peach"/>
+
+        <TextView
+        android:id="@+id/textView_item_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@+id/textView_item_main"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        tools:text="14h00"/>
 
         <TextView
             android:id="@+id/textView_item_mails"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
+            android:layout_below="@+id/textView_item_main"
+            android:maxLines="1"
             tools:text="phil@gmail.com"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/imageButton_item_delete"

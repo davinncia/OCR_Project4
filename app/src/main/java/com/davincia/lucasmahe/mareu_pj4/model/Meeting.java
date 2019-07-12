@@ -1,17 +1,15 @@
 package com.davincia.lucasmahe.mareu_pj4.model;
 
-import java.util.List;
-
 public class Meeting {
 
     private String name;
-    private String hour;
+    private String time;
     private String place;
     private String mails;
 
-    public Meeting(String name, String hour, String place, String mails) {
+    public Meeting(String name, String time, String place, String mails) {
         this.name = name;
-        this.hour = hour;
+        this.time = time;
         this.place = place;
         this.mails = mails;
     }
@@ -24,12 +22,12 @@ public class Meeting {
         this.name = name;
     }
 
-    public String getHour() {
-        return hour;
+    public String getTime() {
+        return time;
     }
 
-    public void setHour(String hour) {
-        this.hour = hour;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getPlace() {

@@ -52,4 +52,6 @@ public class MeetingsListInstrumentedTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, clickChildView(R.id.imageButton_item_delete)));
         onView(withId(R.id.recyclerView_meeting)).check((ViewAssertion) new RecyclerViewUtils.ItemCount(currentMeetingsSize - 1));
     }
+
+    //Check add meeting
 }

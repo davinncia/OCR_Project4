@@ -4,7 +4,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,17 @@ import com.davincia.lucasmahe.mareu_pj4.utils.SortMeetings;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.MeetingsViewHolder> {
 
     private List<Meeting> mMeetings;
+
+    //Date formatting
+    //TODO: this is done here because we want to let time in Meeting objects for sorting purpose
+    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, h:mm a");
 
     @NonNull
     @Override
@@ -40,9 +45,24 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
     @Override
     public void onBindViewHolder(@NonNull MeetingsViewHolder holder, final int i) {
 
-        holder.imageView.setImageResource(R.drawable.ic_launcher_background);
+        switch (mMeetings.get(i).getPlace()){
+            case "Salle A":
+                holder.imageView.setImageResource(R.drawable.circle_salle_a);
+                break;
+            case "Salle B":
+                holder.imageView.setImageResource(R.drawable.circle_salle_b);
+                break;
+            case "Salle C":
+                holder.imageView.setImageResource(R.drawable.circle_salle_c);
+                break;
+        }
+
+        holder.imageView.setColorFilter(R.color.salleA);
         holder.titleTextView.setText(mMeetings.get(i).getName());
         holder.mailsTextView.setText(mMeetings.get(i).getMails());
+
+        String date = dateFormat.format(Long.parseLong(mMeetings.get(i).getTime()));
+        holder.hourTextView.setText(date);
 
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +99,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         private ImageView imageView;
         private TextView titleTextView;
         private TextView mailsTextView;
+        private TextView hourTextView;
         private ImageButton deleteButton;
 
         public MeetingsViewHolder(@NonNull View itemView) {
@@ -87,6 +108,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
             imageView = itemView.findViewById(R.id.imageView_item_meeting);
             titleTextView = itemView.findViewById(R.id.textView_item_main);
             mailsTextView = itemView.findViewById(R.id.textView_item_mails);
+            hourTextView = itemView.findViewById(R.id.textView_item_hour);
             deleteButton = itemView.findViewById(R.id.imageButton_item_delete);
         }
 

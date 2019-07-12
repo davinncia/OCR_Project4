@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel;
 import com.davincia.lucasmahe.mareu_pj4.model.Meeting;
 import com.davincia.lucasmahe.mareu_pj4.repositories.MeetingRepository;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class MeetingViewModel extends ViewModel {

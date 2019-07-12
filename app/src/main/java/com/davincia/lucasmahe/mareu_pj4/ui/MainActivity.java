@@ -21,6 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,9 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 mAdapter.setData(meetings, sortingOrder);
             }
         });
-        mMeetingViewModel.init();
 
         initRecyclerView();
+
+        dateTests();
     }
 
 
@@ -139,4 +142,25 @@ public class MainActivity extends AppCompatActivity {
             //mAdapter.setData(mMeetings, sortingOrder);
         }
     };
+
+
+    private void dateTests(){
+
+        Date date = new Date();
+        long time = date.getTime();
+
+        Log.d("debuglog", "date: " + date.toString());
+        Log.d("debuglog", "time: " + time);
+
+        Date reloadedDate = new Date(time);
+
+        Log.d("debuglog", "reloadedDate: " + reloadedDate.toString());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM.dd h:mm a");
+
+        String formatedDate = dateFormat.format(time);
+        Log.d("debuglog", "formatedDate: " + formatedDate);
+
+
+    }
 }
