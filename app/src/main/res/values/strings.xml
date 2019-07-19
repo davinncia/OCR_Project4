@@ -2,4 +2,16 @@
     <string name="app_name">MaReu_pj4</string>
     <string name="NAME_ORDER">Sort by name</string>
     <string name="DATE_ORDER">Sort by date</string>
+    <string name="name_caps">NAME</string>
+    <string name="time_caps">TIME</string>
+    <string name="room_caps">ROOM</string>
+    <string name="participants_caps">PARTICIPANTS</string>
+    <string name="add_meeting">Add Meeting</string>
+
+    <string-array name="Rooms">
+        <item>Salle A</item>
+        <item>Salle B</item>
+        <item>Salle C</item>
+    </string-array>
+
 </resources>

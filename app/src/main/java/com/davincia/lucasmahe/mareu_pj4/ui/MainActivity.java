@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -135,7 +136,15 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener fabListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            mMeetingViewModel.addMeeting();
+
+            //mMeetingViewModel.addMeeting();
+
+            //Opening our Fragment
+            FragmentManager fm = getSupportFragmentManager();
+            AddMeetingDialogFragment addMeetingDialogFragment = AddMeetingDialogFragment.getInstance();
+            addMeetingDialogFragment.show(fm, "fragment_add_meeting");
+
+
         }
     };
 

@@ -25,8 +25,8 @@ public class DummyMeetingApiService implements MeetingApiService {
     //TODO: I am leaving this as a part of the pseudo Api for now
     //TODO: If i was to make it manually. Should it be in the repository ?
     @Override
-    public void addMeeting() {
-        Meeting newMeeting = DUMMY_MEETINGS.get(new Random().nextInt(DUMMY_MEETINGS.size()));
-        meetings.add(newMeeting);
+    public void addMeeting(Meeting meeting) {
+        //Meeting newMeeting = DUMMY_MEETINGS.get(new Random().nextInt(DUMMY_MEETINGS.size()));
+        meetings.add(meeting);
     }
 }

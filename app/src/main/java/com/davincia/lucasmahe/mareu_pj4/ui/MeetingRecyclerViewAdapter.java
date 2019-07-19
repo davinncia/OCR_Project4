@@ -29,7 +29,7 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
 
     //Date formatting
     //TODO: to format date here seems better for perf: avoid a for loop in ViewModel
-    SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a, EEE MMM d");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a");
 
     @NonNull
     @Override

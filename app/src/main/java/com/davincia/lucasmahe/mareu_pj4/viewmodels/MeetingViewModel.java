@@ -45,8 +45,8 @@ public class MeetingViewModel extends ViewModel {
         return mMeetings;
     }
 
-    public void addMeeting(){
-        mMeetingRepository.addMeeting();
+    public void addMeeting(Meeting meeting){
+        mMeetingRepository.addMeeting(meeting);
         getMeetings();
     }
 

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/imageView_item_meeting"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        tools:src="@android:drawable/alert_dark_frame"/>
-    
-    <RelativeLayout
+        tools:src="@android:drawable/alert_dark_frame" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="5"
@@ -21,30 +22,34 @@
 
         <TextView
             android:id="@+id/textView_item_main"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:textStyle="bold"
-            tools:text="Réunion A - Peach"/>
+            app:layout_constraintEnd_toStartOf="@+id/textView_item_hour"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Réunion A - Peach" />
 
         <TextView
-        android:id="@+id/textView_item_hour"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_toRightOf="@+id/textView_item_main"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:textStyle="bold"
-        tools:text="14h00"/>
+            android:id="@+id/textView_item_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="14h00" />
 
         <TextView
             android:id="@+id/textView_item_mails"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_below="@+id/textView_item_main"
             android:maxLines="1"
-            tools:text="phil@gmail.com"/>
-    </RelativeLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_item_main"
+            tools:text="phil@gmail.com" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/imageButton_item_delete"
@@ -52,6 +57,6 @@
         android:layout_height="50dp"
         android:layout_weight="1"
         android:backgroundTint="@android:color/transparent"
-        android:src="@drawable/ic_bin"/>
+        android:src="@drawable/ic_bin" />
 
 </LinearLayout>
