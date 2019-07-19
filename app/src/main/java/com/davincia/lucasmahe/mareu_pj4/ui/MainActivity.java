@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int NAME_ORDER = 2;
 
     private List<Meeting> mMeetings;
-    //this should be stored in preferences
-    private int sortingOrder = 0;
 
     private MeetingViewModel mMeetingViewModel;
 
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mRecyclerView = findViewById(R.id.recyclerView_meeting);
         FloatingActionButton mFab = findViewById(R.id.fab_add_meeting);
 
@@ -54,14 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
         mMeetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel.class);
         mMeetingViewModel.init();
-        //TODO: still not called automatically...
+
         mMeetingViewModel.getMeetings().observe(this, new Observer<List<Meeting>>() {
             @Override
             public void onChanged(List<Meeting> meetings) {
                 Log.d("debuglog", "onChanged");
                 //This list is used later for sorting
                 mMeetings = meetings;
-                mAdapter.setData(meetings, sortingOrder);
+                mAdapter.setData(meetings);
             }
         });
 
@@ -109,14 +106,16 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menu_sort_by_name:
-                sortingOrder = NAME_ORDER;
+                mMeetingViewModel.setSortingOrder(NAME_ORDER);
                 //this will trigger our observer by changing method output
                 mMeetingViewModel.getMeetings();
+                Log.d("debuglog", "name order selected");
                 return true;
             case R.id.menu_sort_by_date:
-                sortingOrder = DATE_ORDER;
+                mMeetingViewModel.setSortingOrder(DATE_ORDER);
                 //this will trigger our observer by changing method output
                 mMeetingViewModel.getMeetings();
+                Log.d("debuglog", "date order selected");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -130,16 +129,13 @@ public class MainActivity extends AppCompatActivity {
     public void onDeleteMeeting(DeleteMeetingEvent event){
         //TODO: would be better to delete via a unique identifier
         mMeetingViewModel.deleteMeeting(event.meeting);
-        //TODO: This should ne done automatically trouble with the observer of viewModel
-        mMeetingViewModel.getMeetings();
+
     }
 
     View.OnClickListener fabListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mMeetingViewModel.addMeeting();
-            mMeetingViewModel.getMeetings();
-            //mAdapter.setData(mMeetings, sortingOrder);
         }
     };
 
@@ -160,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
 
         String formatedDate = dateFormat.format(time);
         Log.d("debuglog", "formatedDate: " + formatedDate);
-
 
     }
 }

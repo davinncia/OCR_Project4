@@ -20,6 +20,7 @@ import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static com.davincia.lucasmahe.mareu_pj4.utils.RecyclerViewUtils.clickChildView;
 
@@ -35,14 +36,13 @@ public class MeetingsListInstrumentedTest {
 
     @Before
     public void setup(){
-        //TODO: Not sure with that...
         mApiService = Injection.getMeetingApiService();
         mActivityRule.getActivity();
         currentMeetingsSize = mApiService.getMeetings().size();
     }
 
     @Test
-    public void checkIfRecyclerViewItemCount(){
+    public void checkRecyclerViewItemCount(){
         onView(withId(R.id.recyclerView_meeting)).check((ViewAssertion) new RecyclerViewUtils.ItemCount(currentMeetingsSize));
     }
 
@@ -53,5 +53,10 @@ public class MeetingsListInstrumentedTest {
         onView(withId(R.id.recyclerView_meeting)).check((ViewAssertion) new RecyclerViewUtils.ItemCount(currentMeetingsSize - 1));
     }
 
-    //Check add meeting
+    @Test
+    public void checkIfAddingMeetingIsWorking(){
+        onView(withId(R.id.fab_add_meeting))
+                .perform(click());
+        onView(withId(R.id.recyclerView_meeting)).check((ViewAssertion) new RecyclerViewUtils.ItemCount(currentMeetingsSize + 1));
+    }
 }

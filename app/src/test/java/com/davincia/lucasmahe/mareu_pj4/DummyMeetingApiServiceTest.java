@@ -4,16 +4,21 @@ import com.davincia.lucasmahe.mareu_pj4.di.Injection;
 import com.davincia.lucasmahe.mareu_pj4.model.Meeting;
 import com.davincia.lucasmahe.mareu_pj4.service.DummyMeetingGenerator;
 import com.davincia.lucasmahe.mareu_pj4.service.MeetingApiService;
+import com.davincia.lucasmahe.mareu_pj4.ui.MainActivity;
+import com.davincia.lucasmahe.mareu_pj4.ui.MeetingRecyclerViewAdapter;
+import com.davincia.lucasmahe.mareu_pj4.utils.SortMeetings;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -61,11 +66,39 @@ public class DummyMeetingApiServiceTest {
 
     @Test
     public void sortMeetingsByName(){
+        //GIVEN
+        Meeting m1 = new Meeting("AAAA", "17864287", "Salle B", "phil.com");
+        Meeting m2 = new Meeting("BBBB", "27864287", "Salle A", "jacques.com");
+        Meeting m3 = new Meeting("CCCC", "37864287", "Salle C", "amine.com");
 
+        List<Meeting> meetings = new ArrayList<>();
+        meetings.add(m1);
+        meetings.add(m3);
+        meetings.add(m2);
+        //WHEN
+        SortMeetings.nameOrder(meetings);
+        //THEN
+        assertSame(m1, meetings.get(0));
+        assertSame(m2, meetings.get(1));
+        assertSame(m3, meetings.get(2));
     }
 
     @Test
     public void sortMeetingsByDate(){
+        //GIVEN
+        Meeting m1 = new Meeting("AAAA", "17864287", "Salle B", "phil.com");
+        Meeting m2 = new Meeting("BBBB", "27864287", "Salle A", "jacques.com");
+        Meeting m3 = new Meeting("CCCC", "37864287", "Salle C", "amine.com");
 
+        List<Meeting> meetings = new ArrayList<>();
+        meetings.add(m3);
+        meetings.add(m2);
+        meetings.add(m1);
+        //WHEN
+        SortMeetings.dateOrder(meetings);
+        //THEN
+        assertSame(m1, meetings.get(0));
+        assertSame(m2, meetings.get(1));
+        assertSame(m3, meetings.get(2));
     }
 }

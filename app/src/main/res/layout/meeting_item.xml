@@ -7,10 +7,9 @@
 
     <ImageView
         android:id="@+id/imageView_item_meeting"
-        android:layout_width="0dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_weight="1"
-        android:src="@android:drawable/alert_dark_frame"/>
+        tools:src="@android:drawable/alert_dark_frame"/>
     
     <RelativeLayout
         android:layout_width="0dp"

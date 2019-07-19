@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,8 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
     private List<Meeting> mMeetings;
 
     //Date formatting
-    //TODO: this is done here because we want to let time in Meeting objects for sorting purpose
-    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, h:mm a");
+    //TODO: to format date here seems better for perf: avoid a for loop in ViewModel
+    SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a, EEE MMM d");
 
     @NonNull
     @Override
@@ -57,7 +58,6 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
                 break;
         }
 
-        holder.imageView.setColorFilter(R.color.salleA);
         holder.titleTextView.setText(mMeetings.get(i).getName());
         holder.mailsTextView.setText(mMeetings.get(i).getMails());
 
@@ -78,19 +78,9 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
         return mMeetings != null? mMeetings.size() : 0;
     }
 
-    public void setData(List<Meeting> meetings, int order){
-        SortMeetings sorter = new SortMeetings();
+    public void setData(List<Meeting> meetings){
 
-        switch (order){
-            case MainActivity.NAME_ORDER:
-                this.mMeetings = sorter.nameOrder(meetings);
-                break;
-            case MainActivity.DATE_ORDER:
-                this.mMeetings = sorter.dateOrder(meetings);
-                break;
-            default:
-                this.mMeetings = meetings;
-        }
+        this.mMeetings = meetings;
         notifyDataSetChanged();
     }
 
@@ -111,6 +101,5 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecy
             hourTextView = itemView.findViewById(R.id.textView_item_hour);
             deleteButton = itemView.findViewById(R.id.imageButton_item_delete);
         }
-
     }
 }
