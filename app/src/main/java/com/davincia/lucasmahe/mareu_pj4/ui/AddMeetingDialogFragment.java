@@ -1,8 +1,6 @@
 package com.davincia.lucasmahe.mareu_pj4.ui;
 
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +18,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.davincia.lucasmahe.mareu_pj4.R;
 import com.davincia.lucasmahe.mareu_pj4.model.Meeting;
-import com.davincia.lucasmahe.mareu_pj4.repositories.MeetingRepository;
 import com.davincia.lucasmahe.mareu_pj4.utils.TimeConverting;
 import com.davincia.lucasmahe.mareu_pj4.viewmodels.MeetingViewModel;
 

@@ -58,10 +58,11 @@ public class DummyMeetingApiServiceTest {
     public void addNewMeetingWithSuccess(){
         //GIVEN
         int meetingsSize = mApiService.getMeetings().size();
+        Meeting newMeeting = new Meeting("Réunion", "12343493", "Salle B", "Phil, Jean");
         //WHEN
-        mApiService.addMeeting();
+        mApiService.addMeeting(newMeeting);
         //THEN
-        assertTrue(mApiService.getMeetings().size() == meetingsSize + 1);
+        assertEquals(mApiService.getMeetings().size(), meetingsSize + 1);
     }
 
     @Test
