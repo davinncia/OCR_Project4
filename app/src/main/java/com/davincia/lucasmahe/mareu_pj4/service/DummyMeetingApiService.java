@@ -24,7 +24,6 @@ public class DummyMeetingApiService implements MeetingApiService {
 
     @Override
     public void addMeeting(Meeting meeting) {
-        //Meeting newMeeting = DUMMY_MEETINGS.get(new Random().nextInt(DUMMY_MEETINGS.size()));
         meetings.add(meeting);
     }
 }

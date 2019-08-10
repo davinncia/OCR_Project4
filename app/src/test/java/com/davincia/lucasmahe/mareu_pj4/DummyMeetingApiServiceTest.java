@@ -4,8 +4,6 @@ import com.davincia.lucasmahe.mareu_pj4.di.Injection;
 import com.davincia.lucasmahe.mareu_pj4.model.Meeting;
 import com.davincia.lucasmahe.mareu_pj4.service.DummyMeetingGenerator;
 import com.davincia.lucasmahe.mareu_pj4.service.MeetingApiService;
-import com.davincia.lucasmahe.mareu_pj4.ui.MainActivity;
-import com.davincia.lucasmahe.mareu_pj4.ui.MeetingRecyclerViewAdapter;
 import com.davincia.lucasmahe.mareu_pj4.utils.SortMeetings;
 
 import org.junit.Before;
@@ -19,8 +17,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 
 @RunWith(JUnit4.class)
@@ -30,7 +26,7 @@ public class DummyMeetingApiServiceTest {
 
     @Before
     public void setup() {
-        mApiService = Injection.getNewInsanceApiService();
+        mApiService = Injection.getNewInstanceApiService();
     }
 
     @Test

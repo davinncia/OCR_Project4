@@ -10,7 +10,7 @@ public class Injection {
     public static MeetingApiService getMeetingApiService() { return service; }
 
     //Useful for tests, so we ensure context is clean
-    public static MeetingApiService getNewInsanceApiService(){
+    public static MeetingApiService getNewInstanceApiService(){
         return new DummyMeetingApiService();
     }
 }

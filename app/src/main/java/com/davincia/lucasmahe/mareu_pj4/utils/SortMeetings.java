@@ -8,6 +8,12 @@ import java.util.List;
 
 public class SortMeetings {
 
+    public enum SortMethods{
+
+        DATE_ORDER,
+        NAME_ORDER
+
+    }
 
     public static List<Meeting> nameOrder(List<Meeting> meetings){
 

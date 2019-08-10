@@ -76,7 +76,6 @@ public class AddMeetingDialogFragment extends DialogFragment {
         mHourPicker.setMaxValue(23);
 
         mMeetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel.class);
-        mMeetingViewModel.init();
 
         mValidateButton.setOnClickListener(onClickListener);
     }
@@ -99,7 +98,6 @@ public class AddMeetingDialogFragment extends DialogFragment {
             } else {
                 Toast.makeText(getContext(), "Field missing", Toast.LENGTH_SHORT).show();
             }
-
         }
     };
 }

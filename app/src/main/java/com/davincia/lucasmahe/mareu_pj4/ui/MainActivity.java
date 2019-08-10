@@ -16,22 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.davincia.lucasmahe.mareu_pj4.R;
 import com.davincia.lucasmahe.mareu_pj4.events.DeleteMeetingEvent;
 import com.davincia.lucasmahe.mareu_pj4.model.Meeting;
+import com.davincia.lucasmahe.mareu_pj4.utils.SortMeetings;
 import com.davincia.lucasmahe.mareu_pj4.viewmodels.MeetingViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final int DATE_ORDER = 1;
-    public static final int NAME_ORDER = 2;
-
-    private List<Meeting> mMeetings;
 
     private MeetingViewModel mMeetingViewModel;
 
@@ -46,26 +40,27 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recyclerView_meeting);
         FloatingActionButton mFab = findViewById(R.id.fab_add_meeting);
 
-        mFab.setOnClickListener(fabListener);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager fm = getSupportFragmentManager();
+                AddMeetingDialogFragment addMeetingDialogFragment = AddMeetingDialogFragment.getInstance();
+                addMeetingDialogFragment.show(fm, null);
+            }
+        });
 
         mAdapter = new MeetingRecyclerViewAdapter();
+        initRecyclerView();
 
         mMeetingViewModel = ViewModelProviders.of(this).get(MeetingViewModel.class);
-        mMeetingViewModel.init();
 
         mMeetingViewModel.getMeetings().observe(this, new Observer<List<Meeting>>() {
             @Override
             public void onChanged(List<Meeting> meetings) {
-                Log.d("debuglog", "onChanged");
-                //This list is used later for sorting
-                mMeetings = meetings;
                 mAdapter.setData(meetings);
             }
         });
-
-        initRecyclerView();
-
-        dateTests();
     }
 
 
@@ -107,16 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menu_sort_by_name:
-                mMeetingViewModel.setSortingOrder(NAME_ORDER);
-                //this will trigger our observer by changing method output
-                mMeetingViewModel.getMeetings();
-                Log.d("debuglog", "name order selected");
+                mMeetingViewModel.setSortingOrder(SortMeetings.SortMethods.NAME_ORDER);
                 return true;
             case R.id.menu_sort_by_date:
-                mMeetingViewModel.setSortingOrder(DATE_ORDER);
-                //this will trigger our observer by changing method output
-                mMeetingViewModel.getMeetings();
-                Log.d("debuglog", "date order selected");
+                mMeetingViewModel.setSortingOrder(SortMeetings.SortMethods.DATE_ORDER);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -128,43 +117,6 @@ public class MainActivity extends AppCompatActivity {
     ///////////////////////////
     @Subscribe
     public void onDeleteMeeting(DeleteMeetingEvent event){
-        //TODO: would be better to delete via a unique identifier
         mMeetingViewModel.deleteMeeting(event.meeting);
-
-    }
-
-    View.OnClickListener fabListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            //mMeetingViewModel.addMeeting();
-
-            //Opening our Fragment
-            FragmentManager fm = getSupportFragmentManager();
-            AddMeetingDialogFragment addMeetingDialogFragment = AddMeetingDialogFragment.getInstance();
-            addMeetingDialogFragment.show(fm, "fragment_add_meeting");
-
-
-        }
-    };
-
-
-    private void dateTests(){
-
-        Date date = new Date();
-        long time = date.getTime();
-
-        Log.d("debuglog", "date: " + date.toString());
-        Log.d("debuglog", "time: " + time);
-
-        Date reloadedDate = new Date(time);
-
-        Log.d("debuglog", "reloadedDate: " + reloadedDate.toString());
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM.dd h:mm a");
-
-        String formatedDate = dateFormat.format(time);
-        Log.d("debuglog", "formatedDate: " + formatedDate);
-
     }
 }

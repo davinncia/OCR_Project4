@@ -22,14 +22,14 @@ import org.greenrobot.eventbus.EventBus;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.MeetingsViewHolder> {
 
     private List<Meeting> mMeetings;
 
     //Date formatting
-    //TODO: to format date here seems better for perf: avoid a for loop in ViewModel
-    SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a", Locale.FRANCE);
 
     @NonNull
     @Override
